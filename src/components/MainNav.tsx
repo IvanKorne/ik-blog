@@ -15,20 +15,11 @@ const MainNav = () => {
           <Link
             href="/blog"
             className={cn(
-              "text-base font-medium transition-colors hover:text-foreground/60 ",
+              "text-xl font-medium transition-colors hover:text-foreground/60 ",
               pathname === "/blog" ? "text-foreground/60" : "text-foreground"
             )}
           >
             Blog
-          </Link>
-          <Link
-            href="/about"
-            className={cn(
-              "text-base font-medium transition-colors hover:text-foreground/60",
-              pathname === "/about" ? "text-foreground/60" : "text-foreground"
-            )}
-          >
-            About
           </Link>
         </div>
         <div className="items-center gap-10 flex ">

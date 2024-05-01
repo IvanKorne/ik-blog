@@ -40,18 +40,6 @@ const MobileNav = () => {
                   >
                     Blog
                   </Link>
-                  <Link
-                    href="/about"
-                    className={cn(
-                      "text-xl font-medium transition-colors hover:text-foreground/60",
-                      pathname === "/about"
-                        ? "text-foreground/60"
-                        : "text-foreground"
-                    )}
-                    onClick={() => setOpen(false)}
-                  >
-                    About
-                  </Link>
                 </div>
                 <div className="flex flex-col gap-5 font-medium">
                   <Link
