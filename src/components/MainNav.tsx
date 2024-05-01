@@ -15,8 +15,8 @@ const MainNav = () => {
           <Link
             href="/blog"
             className={cn(
-              "text-base font-medium transition-colors hover:text-foreground ",
-              pathname === "/blog" ? "text-foreground" : "text-foreground/60"
+              "text-base font-medium transition-colors hover:text-foreground/60 ",
+              pathname === "/blog" ? "text-foreground/60" : "text-foreground"
             )}
           >
             Blog
@@ -24,8 +24,8 @@ const MainNav = () => {
           <Link
             href="/about"
             className={cn(
-              "text-base font-medium transition-colors hover:text-foreground",
-              pathname === "/about" ? "text-foreground" : "text-foreground/60"
+              "text-base font-medium transition-colors hover:text-foreground/60",
+              pathname === "/about" ? "text-foreground/60" : "text-foreground"
             )}
           >
             About

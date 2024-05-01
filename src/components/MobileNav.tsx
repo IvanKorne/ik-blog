@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -15,11 +15,12 @@ import { ModeToggle } from "./ModeToggle";
 
 const MobileNav = () => {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
   return (
     <div className="block md:hidden w-full">
       <div className="flex w-full items-center justify-end px-4 gap-5">
         <ModeToggle />
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger>
             <Menu className="size-10 text-foreground" />
           </SheetTrigger>
@@ -30,22 +31,24 @@ const MobileNav = () => {
                   <Link
                     href="/blog"
                     className={cn(
-                      "text-xl font-medium transition-colors hover:text-foreground",
+                      "text-xl font-medium transition-colors hover:text-foreground/60",
                       pathname === "/blog"
-                        ? "text-foreground"
-                        : "text-foreground/60"
+                        ? "text-foreground/60"
+                        : "text-foreground"
                     )}
+                    onClick={() => setOpen(false)}
                   >
                     Blog
                   </Link>
                   <Link
                     href="/about"
                     className={cn(
-                      "text-xl font-medium transition-colors hover:text-foreground",
+                      "text-xl font-medium transition-colors hover:text-foreground/60",
                       pathname === "/about"
-                        ? "text-foreground"
-                        : "text-foreground/60"
+                        ? "text-foreground/60"
+                        : "text-foreground"
                     )}
+                    onClick={() => setOpen(false)}
                   >
                     About
                   </Link>
