@@ -1,6 +1,13 @@
-/** @type {import('next').NextConfig} */
-
 import { build } from "velite";
+
+/** @type {import('next').NextConfig} */
+export default {
+  // othor next config here...
+  webpack: (config) => {
+    config.plugins.push(new VeliteWebpackPlugin());
+    return config;
+  },
+};
 
 class VeliteWebpackPlugin {
   static started = false;
@@ -20,12 +27,3 @@ class VeliteWebpackPlugin {
     });
   }
 }
-
-const nextConfig = {
-  webpack: (config) => {
-    config.plugins.push(new VeliteWebpackPlugin());
-    return config;
-  },
-};
-
-export default nextConfig;
