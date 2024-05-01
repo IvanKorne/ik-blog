@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Post } from "#site/content";
+import { Post, posts } from "#site/content";
+import { PostPageParams } from "@/app/blog/[...slug]/page";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -26,3 +27,9 @@ export function sortPosts(posts: Array<Post>) {
     }
   });
 }
+
+export const getPostFromParams = async (params: PostPageParams["params"]) => {
+  const slug = params?.slug.join("/");
+  const post = posts.find((post) => post.slugAsParams === slug);
+  return post;
+};
