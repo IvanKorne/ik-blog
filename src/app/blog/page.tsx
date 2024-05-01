@@ -27,7 +27,7 @@ const BlogPage = ({ searchParams }: BlogPageProps) => {
           <h1 className="text-4xl md:text-5xl font-bold ">Blog</h1>
           <p className="text-muted-foreground text0lg">
             My personal blog where I talk all about web dev, university and
-            anything that's on my mind!
+            anything that&apos;s on my mind!
           </p>
         </div>
       </div>
