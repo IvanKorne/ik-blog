@@ -3,6 +3,7 @@ import { getPostFromParams } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import React from "react";
 import { MDXContent } from "@/components/MDXComponent";
+import "../../../../styles/mdx.css";
 
 export type PostPageParams = {
   params: {
