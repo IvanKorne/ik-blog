@@ -1,0 +1,100 @@
+---
+title: My Opinions about React 19
+description: Actions
+date: 2024-05-01
+author: Your Name
+published: true
+---
+
+React 19 is _finally_ coming out, an update many developers, such as Fireship and Theo, are raving all about.
+
+## Actions
+
+One of the big takeaways that I take from this update is that React is seemingly trying to make the UseEffect hook obsolite, and with the new server actions coming to React, the useEffect hook has never been in a worse state.
+
+Server actions has already been a thing in NextJS, with the UseForm hook being widely used in many (and my own) projects.
+
+Actions being added into React 19 will make bloated code go from this
+
+```js showLineNumbers {2-4}
+function UpdateName({}) {
+  const [name, setName] = useState("");
+  const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(false);
+
+  const handleSubmit = async () => {
+    setIsPending(true);
+    const error = await updateName(name);
+    setIsPending(false);
+    if (error) {
+      setError(error);
+      return;
+    }
+    redirect("/path");
+  };
+
+  return (
+    <div>
+      <input value={name} onChange={(event) => setName(event.target.value)} />
+      <button onClick={handleSubmit} disabled={isPending}>
+        Update
+      </button>
+      {error && <p>{error}</p>}
+    </div>
+  );
+}
+```
+
+to this
+
+```js showLineNumbers {4,21} caption="From the official React 19 Docs"
+// Using pending state from Actions
+function UpdateName({}) {
+  const [name, setName] = useState("");
+  const [error, setError] = useState(null);
+  const [isPending, startTransition] = useTransition();
+
+  const handleSubmit = () => {
+    startTransition(async () => {
+      const error = await updateName(name);
+      if (error) {
+        setError(error);
+        return;
+      }
+      redirect("/path");
+    });
+  };
+
+  return (
+    <div>
+      <input value={name} onChange={(event) => setName(event.target.value)} />
+      <button onClick={handleSubmit} disabled={isPending}>
+        Update
+      </button>
+      {error && <p>{error}</p>}
+    </div>
+  );
+}
+```
+
+In my opinion, a major improvement and one that will greatly improve the developer experience of React.
+
+## Suspense Improvements
+
+One thing to you need to take into account with these changes is the lack of states, used to display either error or pending. This is because the Suspense component is set to replace it.
+
+I have personally only used it when working with Tanstack's react router, and now with NextJs App router, my knowledge of Suspense is very limited.
+
+Although I do think adding server actions is a positive change, using Suspense is something that I, and many other programmers will have to get used to!
+
+## Improved Developer Tools
+
+React 19 also brings improvements to its developer tools, making it easier for developers to debug and optimize their applications. The React DevTools extension now provides more insights into Concurrent Mode rendering, allowing developers to visualize how React schedules and prioritizes updates.
+
+Not only that, the Profiler tool has been enhanced to provide better visibility into performance bottlenecks, helping developers identify and address areas for optimization more effectively.
+
+## Conclusion
+
+React 19 introduces several exciting changes and improvements that enhance the developer experience and empower developers to build faster, more responsive applications. From enhancements to Concurrent Mode and Suspense to improvements in developer tools and TypeScript support, React 19 continues to push the boundaries of what's possible with modern web development.
+
+I believe this update will make react the clear favourite framework to use compared to it's counterparts.
